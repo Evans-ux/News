@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import Displaynews from "../../../components/components/Displaynews";
 import TrendingSidebar from "../../../components/components/TrendingSidebar";
 import Load from "@/components/ui/_components/load";
+import { ThemeProvider } from "next-themes";
 
 interface Article {
   title: string;
@@ -47,6 +48,7 @@ const CategoryPage = async ({ params, searchParams }: Props) => {
   const mainFeedData = alldata.slice(3);
 
   return (
+    <ThemeProvider>
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-10 bg-gray-50/30">
       
       <div className="flex flex-col lg:flex-row gap-10">
@@ -85,6 +87,7 @@ const CategoryPage = async ({ params, searchParams }: Props) => {
       </div>
 
     </main>
+    </ThemeProvider>
   );
 };
 

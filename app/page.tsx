@@ -1,3 +1,4 @@
+
 import Error from 'next/error';
 import React, { Suspense } from 'react';
 
@@ -5,6 +6,7 @@ import Displaynews from '../components/components/Displaynews';
 import Load from '@/components/ui/_components/load';
 import TrendingSidebar from '@/components/components/TrendingSidebar';
 import BreakingNews from '@/components/components/BreakingNews';
+import { createDummyPost } from './actions/database';
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -51,7 +53,7 @@ const fetchnews = async ({ searchParams }: Props) => {
         <section className="w-full lg:w-2/3 xl:w-3/4">
           <div className="flex items-center mb-6">
             <h2 className="text-2xl font-black text-gray-900 border-b-4 pb-1 border-red-600">
-              Latest Headlines
+              Latest Headlines 
             </h2>
           </div>
           <Suspense fallback={<Load />}>

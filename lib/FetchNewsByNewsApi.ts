@@ -9,3 +9,4 @@ const FetchNewsByNewsApi = async (category?: string) => {
 };
 
 export default FetchNewsByNewsApi;
+/*0lPxNdgCEdhULVR9*/

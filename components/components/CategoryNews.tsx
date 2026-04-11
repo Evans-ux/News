@@ -15,36 +15,39 @@ const CategoryNews = ({ data, title }: any) => {
   return (
     <div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
         {data.map((article: Article, index: number) => (
 
           <div
             key={index}
-            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300 flex flex-col"
+            className="group bg-card text-card-foreground rounded-2xl shadow-sm hover:shadow-2xl hover:shadow-red-900/15 overflow-hidden transition-all duration-500 flex flex-col border border-border/50 transform hover:-translate-y-1 relative"
           >
+            <div className="overflow-hidden relative">
+              <img
+                src={article.image || article.urlToImage || "/news.jpg"}
+                alt={article.title}
+                className="w-full h-52 object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
 
-            <img
-              src={article.image || article.urlToImage || "/news.jpg"}
-              alt={article.title}
-              className="w-full h-48 object-cover"
-            />
+            <div className="p-6 flex flex-col flex-grow relative z-10 bg-card">
 
-            <div className="p-5 flex flex-col flex-grow">
-
-              <h2 className="font-bold text-lg mb-2 line-clamp-2">
+              <h2 className="font-black text-lg mb-3 line-clamp-2 group-hover:text-red-600 transition-colors duration-300 tracking-tight leading-snug">
                 {article.title}
               </h2>
 
-              <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+              <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
                 {article.description}
               </p>
 
               <Link
                 href={`/news/${encodeURIComponent(article.title)}`}
-                className="mt-auto text-blue-600 font-medium hover:text-blue-800"
+                className="mt-auto inline-flex items-center text-red-600 font-bold hover:text-red-700 transition-colors w-fit group/link"
               >
-                Read more →
+                Read more 
+                <span className="ml-1 group-hover/link:translate-x-1 transition-transform inline-block">→</span>
               </Link>
 
             </div>
@@ -60,20 +63,3 @@ const CategoryNews = ({ data, title }: any) => {
 }
 
 export default CategoryNews
-/* {
-href={`/blog/${item.id}`} key={item.id}
-      source: [Object],
-      author: 'Raja Rao DV',
-      title: "It's 2026, Just Use Postgres",
-      description: 'Stop managing multiple databases. Postgres extensions replace Elasticsearch, Pinecone, Redis, MongoDB, and InfluxDB with BM25, vectors, JSONB, and time-series in one database.',       
-      url: 'https://www.tigerdata.com/blog/its-2026-just-use-postgres',
-      urlToImage: 'https://timescale.ghost.io/blog/content/images/2026/02/just-use-postgres-2026.png',      publishedAt: '2026-02-05T21:24:03Z',
-      content: "Think of your database like your home. Your home has a living room, bedroom, bathroom, kitchen, and garage. Each room serves a different purpose. But they're all under the same roof, connected by hal… [+16659 chars]"
-    }
-*/
-
-
-
-
- 
- 

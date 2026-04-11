@@ -1,16 +1,13 @@
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
  
 import { Toaster } from "sonner";
- 
-import CategorySlider from "../components/components/CategorySlider";
-import BreakingNews from "../components/components/BreakingNews";
 import Navbar from "../components/components/NewsNav";
-import SearchNews from "../components/components/SearchNews";
  
-
+import ThemeProvider from "../components/components/ThemeProvider";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/components/app-sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,17 +30,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-          <Navbar />
-
-        {children}
-        <Toaster/>
-      
+        <ThemeProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <div className="flex flex-col flex-1 w-full min-h-screen">
+              <Navbar />
+              <main className="flex-1 w-full relative">
+                {children}
+              </main>
+            </div>
+          </SidebarProvider>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
 }
-
