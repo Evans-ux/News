@@ -15,16 +15,19 @@ model User {
   subscriber      subscribers?
   user_tags       user_tags[]
   user_categories user_categories[]
+  authors authors?
 }
 
 model authors {
   id                 String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name               String
+  user_Id            String       @unique @db.Uuid
   bio                String?
-  email              String       @unique
   social_media_links Json?
+  approved           Boolean      @default(false)
   blog_posts         blog_posts[]
   comments           comments[]
+  user  User? @relation(fields: [user_Id], references: [id], onDelete: Cascade)
 }
 
 model blog_posts {
@@ -34,12 +37,14 @@ model blog_posts {
   author_id       String?           @db.Uuid
   created_at      DateTime?         @default(now()) @db.Timestamp(6)
   updated_at      DateTime?         @db.Timestamp(6)
-  likes           Int               @default(0)
+  description     String
+  urlToImage      String?
   authors         authors?          @relation(fields: [author_id], references: [id], onUpdate: NoAction)
   comments        comments[]
   post_categories post_categories[]
   post_tags       post_tags[]
 }
+ 
 
 model categories {
   id              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
@@ -53,7 +58,7 @@ model comments {
   id         String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   post_id    String?     @db.Uuid
   author_id  String?     @db.Uuid
-  userId     String
+  userId     String      @db.Uuid
   content    String
   created_at DateTime?   @default(now()) @db.Timestamp(6)
   authors    authors?    @relation(fields: [author_id], references: [id], onUpdate: NoAction)

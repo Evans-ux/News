@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import {useForm} from "react-hook-form"
 import { toast } from "sonner";
 import *  as  z  from  "zod"
@@ -34,6 +35,8 @@ type AuthFormData = {
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const router = useRouter();
 
   const { register, reset, handleSubmit, formState: { errors, isSubmitting } } = useForm<AuthFormData>({
@@ -84,7 +87,7 @@ const AuthForm = () => {
           { position: "top-center" }
         );
         reset();
-        router.push("/auth/confirm-email");
+        router.push(`/auth/confirm-email?email=${encodeURIComponent(email)}`);
       } else {
         toast.error(user.message || user?.error || "Something went wrong", {
           position: "top-center",
@@ -193,12 +196,25 @@ const AuthForm = () => {
               <label className="text-sm font-semibold text-foreground">
                 Password
               </label>
-              <input
-                type="password"
-                placeholder="••••••••"
-                {...register("password")}
-                className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-red-500/40 focus:border-red-500 transition-all duration-200 text-sm"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="••••••••"
+                  {...register("password")}
+                  className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-red-500/40 focus:border-red-500 transition-all duration-200 text-sm pr-11"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors p-1"
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </button>
+              </div>
               {errors.password && (
                 <p className="text-xs text-red-500 font-medium mt-1">
                   {errors.password.message}
@@ -212,12 +228,25 @@ const AuthForm = () => {
                 <label className="text-sm font-semibold text-foreground">
                   Confirm Password
                 </label>
-                <input
-                  type="password"
-                  placeholder="••••••••"
-                  {...register("confirmPassword")}
-                  className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-red-500/40 focus:border-red-500 transition-all duration-200 text-sm"
-                />
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    {...register("confirmPassword")}
+                    className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-red-500/40 focus:border-red-500 transition-all duration-200 text-sm pr-11"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors p-1"
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
+                  </button>
+                </div>
                 {errors.confirmPassword && (
                   <p className="text-xs text-red-500 font-medium mt-1">
                     {errors.confirmPassword.message}

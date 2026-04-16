@@ -36,7 +36,7 @@ const WeatherPage = () => {
       setError("");
       // Using units=metric for Celsius
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=2de3f53b454da51ffbe7195454b05cd5&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${process.env.WEATHER_API_KEY}&units=metric`
       );
       if (!res.ok) throw new Error("City not found or API error.");
       const data: WeatherData = await res.json();

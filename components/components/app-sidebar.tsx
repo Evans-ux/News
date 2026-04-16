@@ -19,10 +19,11 @@ import {
     LayoutGrid, 
     Newspaper,
     Settings,
-    LogOut
+    LogOut,
+    UserCheck2
 } from "lucide-react"
 import Link from "next/link"
-import { signOut } from "@/app/actions/Logout"
+import { signOut } from "@/components/components/actions/Logout"
 import { Button } from "../ui/button"
 
 // Define navigation items for the sidebar
@@ -30,6 +31,7 @@ const mainNavItems = [
     { title: "Home", url: "/", icon: Home },
     { title: "Weather", url: "/Weather", icon: CloudSun },
     { title: "Authentication", url: "/auth/login", icon: User2 },
+    { title:  "Authors", url: "/auth/LogAuthors",  icon: UserCheck2}
     
 ]
 

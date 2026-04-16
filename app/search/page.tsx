@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import Load from "../../components/ui/_components/load";
-import Displaynews from "../../components/components/Displaynews";
-import TrendingSidebar from "../../components/components/TrendingSidebar";
+import Load from "../../../components/ui/_components/load";
+import Displaynews from "../../../components/components/Displaynews";
+import TrendingSidebar from "../../../components/components/TrendingSidebar";
 import Link from "next/link";
 
 type Props = {
@@ -65,29 +65,29 @@ export default async function SearchPage({
           </div>
 
           {!query ? (
-             <div className="text-center py-20 bg-gray-50 rounded-2xl border border-gray-100">
-                <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <h3 className="text-xl font-bold text-gray-700">Ready to search</h3>
-                <p className="text-gray-500 mt-2">Enter a keyword above to find news articles in your region.</p>
-             </div>
+            <div className="text-center py-20 bg-gray-50 rounded-2xl border border-gray-100">
+              <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <h3 className="text-xl font-bold text-gray-700">Ready to search</h3>
+              <p className="text-gray-500 mt-2">Enter a keyword above to find news articles in your region.</p>
+            </div>
           ) : searchResults.length > 0 ? (
             <Suspense fallback={<Load />}>
               <Displaynews data={searchResults} searchQuery={query} />
             </Suspense>
           ) : (
-             <div className="text-center py-20 bg-gray-50 rounded-2xl border border-gray-100">
-                <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h3 className="text-xl font-bold text-gray-700">No results found</h3>
-                <p className="text-gray-500 mt-2 mb-6">We couldn't find any news articles matching "{query}" in the selected region.</p>
-                <Link href="/" className="inline-flex items-center text-red-600 font-semibold hover:text-red-800">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-                  Back to Homepage
-                </Link>
-             </div>
+            <div className="text-center py-20 bg-gray-50 rounded-2xl border border-gray-100">
+              <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <h3 className="text-xl font-bold text-gray-700">No results found</h3>
+              <p className="text-gray-500 mt-2 mb-6">We couldn't find any news articles matching "{query}" in the selected region.</p>
+              <Link href="/" className="inline-flex items-center text-red-600 font-semibold hover:text-red-800">
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                Back to Homepage
+              </Link>
+            </div>
           )}
         </section>
 

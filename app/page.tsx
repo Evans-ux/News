@@ -2,11 +2,10 @@
 import Error from 'next/error';
 import React, { Suspense } from 'react';
 
-import Displaynews from '../components/components/Displaynews';
+import Displaynews from '@/components/components/Displaynews';
 import Load from '@/components/ui/_components/load';
 import TrendingSidebar from '@/components/components/TrendingSidebar';
 import BreakingNews from '@/components/components/BreakingNews';
-import { createDummyPost } from './actions/database';
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
