@@ -1,4 +1,3 @@
-import { generateId } from "@/app/(root)/mathutils"
 import { ArrowLeft, ArrowRight, Link } from "lucide-react"
 import Image from "next/image"
 import { redirect } from "next/navigation"

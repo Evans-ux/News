@@ -42,7 +42,7 @@ export async function updateSession(request: NextRequest) {
   const user = data?.claims
 
   // Define public routes
-  const publicRoutes = ['/', '/auth', '/api', '/news', '/category', '/search', '/Weather'];
+  const publicRoutes = ['/', '/auth', '/api', '/news', '/category', '/search', `/Profile`, `/LogAuthors`, ];
   const isPublicRoute = publicRoutes.some(route => 
     request.nextUrl.pathname === route || request.nextUrl.pathname.startsWith(`${route}/`)
   );

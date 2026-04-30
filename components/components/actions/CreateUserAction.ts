@@ -16,7 +16,8 @@ const  {data:user,  error} =  await supabase.auth.signUp({
 
     options:{
         data:{
-            full_name:userdata?.name
+            full_name:userdata?.name,
+            role:"USER"
         },
       
     }

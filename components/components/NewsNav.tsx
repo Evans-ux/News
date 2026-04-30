@@ -45,7 +45,7 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex flex-1 items-center justify-between ml-8">
           <nav className="flex gap-6 text-sm font-bold text-muted-foreground">
-            <Link href="/" className="hover:text-red-600 transition-colors duration-300">Home</Link>
+ 
             {categories.map((cat) => (
               <Link
                 key={cat}
@@ -62,18 +62,22 @@ export default function Navbar() {
             <CountrySelect />
 
             {/* Search Bar */}
-            <form onSubmit={handleSearch} className="flex items-center group">
+            <form onSubmit={handleSearch} className="flex items-center group overflow-hidden border border-border/80 rounded-full focus-within:ring-2 focus-within:ring-red-600/40 focus-within:border-red-600 transition-all duration-300 h-9">
               <input
                 type="text"
                 placeholder="Search topics..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="border border-border/80 bg-background text-foreground rounded-l-full px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-red-600/50 focus:border-red-600 text-sm w-36 xl:w-48 transition-all duration-300 shadow-inner group-hover:border-red-300"
+                className="bg-background text-foreground px-4 py-1.5 focus:outline-none text-sm w-36 xl:w-48 h-full transition-all duration-300"
               />
-              <button type="submit" className="bg-red-600 hover:bg-red-700 text-white px-5 py-1.5 rounded-r-full text-sm transition-all duration-300 font-bold border border-transparent shadow-[0_0_10px_rgba(220,38,38,0.3)] hover:shadow-[0_0_15px_rgba(220,38,38,0.6)]">
+              <button 
+                type="submit" 
+                className="bg-red-600 hover:bg-red-700 text-white px-5 h-full text-sm transition-all duration-300 font-bold flex items-center justify-center shrink-0"
+              >
                 Search
               </button>
             </form>
+
           </div>
         </div>
 
@@ -92,18 +96,19 @@ export default function Navbar() {
       {/* Mobile Navigation Dropdown */}
       {isMenuOpen && (
         <div className="lg:hidden bg-background border-t border-border px-4 py-6 shadow-2xl absolute w-full left-0 z-50 animate-in slide-in-from-top-2 duration-300">
-          <form onSubmit={handleSearch} className="flex items-center w-full mb-6">
+          <form onSubmit={handleSearch} className="flex items-center w-full mb-6 border border-border rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-red-600/40 focus-within:border-red-600 transition-all h-12">
             <input
               type="text"
               placeholder="Search news..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="flex-1 border border-border bg-muted/30 text-foreground rounded-l-full px-4 py-3 text-sm focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors"
+              className="flex-1 bg-muted/30 text-foreground px-4 py-2 text-sm focus:outline-none transition-colors h-full"
             />
-            <button type="submit" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-r-full text-sm font-bold shadow-md transition-colors">
+            <button type="submit" className="bg-red-600 hover:bg-red-700 text-white px-6 h-full text-sm font-bold transition-colors shrink-0">
               Search
             </button>
           </form>
+
 
           <nav className="flex flex-col space-y-2 text-base font-bold text-foreground">
             <Link href="/" onClick={() => setIsMenuOpen(false)} className="hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 px-4 py-3 rounded-xl transition-all duration-300">Home</Link>

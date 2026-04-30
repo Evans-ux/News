@@ -1,6 +1,6 @@
 "use server"
 import { createClient } from "@/lib/supabase/server"
-
+ 
 
 type  datatypes  =  {
     password:string,
@@ -9,6 +9,8 @@ type  datatypes  =  {
 const LoginUser = async (userdata:datatypes)=>{
 const  supabase  =  await  createClient()
 
+ 
+  
 const  {data:user,  error} =  await supabase.auth.signInWithPassword({
     email:userdata?.email,
     password:userdata?.password,

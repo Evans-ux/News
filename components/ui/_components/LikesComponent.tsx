@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import IncreremntLike from './actions/IncreremntLike'
-import { Button } from '../ui/button'
+import { Button } from '../button'
 
 const LikesComponent = ({initialLikes}: {initialLikes:number}) => {
 

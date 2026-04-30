@@ -1,0 +1,44 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "../(app)/globals.css";
+
+import { Toaster } from "sonner";
+import ThemeProvider from "@/components/components/ThemeProvider";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Authentication - NewsApp",
+  description: "Sign in or create an account to continue",
+};
+
+export default function AuthLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <ThemeProvider>
+          <div className="min-h-screen w-full bg-background flex flex-col">
+            <main className="flex-1 flex items-center justify-center">
+              {children}
+            </main>
+          </div>
+          <Toaster />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

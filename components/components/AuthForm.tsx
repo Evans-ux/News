@@ -54,6 +54,7 @@ const AuthForm = () => {
     if(isLogin){
       try {
         const { email, password } = data;
+       
         const res = await LoginUser({ email, password });
 
         if (res?.success) {
