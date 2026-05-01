@@ -27,26 +27,18 @@ export async function POST(req: NextRequest){
                     description,
                     urlToImage: urlToImage || null,
                     author_id: author.id,
-
                     ...(category && {
-                        post_categories:{
-                            create:[
-                                {
-                                    categories:{
-                                        connectOrCreate:{
-                                            where:{
-                                            name:category
-                                            },
-                                            create:{
-                                                name:category
-                                            }
-                                        }
+                        post_categories: {
+                            create: [{
+                                categories: {
+                                    connectOrCreate: {
+                                        where: { name: category },
+                                        create: { name: category }
                                     }
                                 }
-                            ]
+                            }]
                         }
                     }),
-                    
                     ...(tags && tags.length > 0 && {
                         post_tags: {
                             create: tags.map((t: string) => ({
