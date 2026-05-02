@@ -10,7 +10,7 @@ type Props = {
 
 
 export default async function SearchPage({
-  searchParams,
+  searchParams
 }: Props) {
   const resolvedParams = await searchParams;
   const rawQuery = resolvedParams.q;
