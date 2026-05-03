@@ -33,8 +33,12 @@ export default async function ProfilePage() {
         <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
         
         <div className="flex flex-col md:flex-row gap-8 items-start md:items-center relative z-10">
-          <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center text-white text-4xl font-black shadow-lg shadow-red-600/20">
-            {(authorProfile?.name || user.email || "U").charAt(0).toUpperCase()} 
+          <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center text-white text-4xl font-black shadow-lg shadow-red-600/20 overflow-hidden">
+            {authorProfile?.urlToImage ? (
+              <img src={authorProfile.urlToImage} alt="Profile" className="w-full h-full object-cover" />
+            ) : (
+              (authorProfile?.name || user.email || "U").charAt(0).toUpperCase()
+            )}
           </div>
           
           <div className="space-y-3 flex-1">

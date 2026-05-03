@@ -24,6 +24,7 @@ type PendingAuthor = {
   id: string;
   name: string;
   bio: string | null;
+  urlToImage: string | null;
   social_media_links: any;
   user_Id: string;
   user: {
@@ -394,8 +395,12 @@ function AuthorRow({
     <div className="p-6 hover:bg-muted/10 transition-colors group">
       <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between">
         <div className="flex items-start gap-4 flex-1">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-red-500/20">
-            {author.name.charAt(0).toUpperCase()}
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-red-500/20 overflow-hidden shrink-0">
+            {author.urlToImage ? (
+              <img src={author.urlToImage} alt={author.name} className="w-full h-full object-cover" />
+            ) : (
+              author.name.charAt(0).toUpperCase()
+            )}
           </div>
           <div className="space-y-1">
             <div className="flex items-center gap-2">

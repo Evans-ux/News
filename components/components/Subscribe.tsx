@@ -4,14 +4,39 @@ import Displaynews from "@/components/components/Displaynews";
 import TrendingSidebar from "@/components/components/TrendingSidebar";
 import Load from "@/components/ui/_components/load";
 import { ThemeProvider } from "next-themes";
+import { toast } from "sonner";
 
-const [email , setEmail] = useState()
+const Subscribe = ({category}:{category:string }) => {
+const [email , setEmail] = useState<string>("")
+const [issubscibing , setIsSubscibing] = useState(false)
 
-const Subscribe = async ({category}:{category:string }) => {
-async function handleSubmit()=>{
+function handleSubmit(e: React.FormEvent<HTMLFormElement>){
 
+e.preventDefault()
+setIsSubscibing(true)
+if(email){
+    try {
+     const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({email}),
+      })
+      if (res.ok) {
+        toast.success("Subscibed successfully", { position: "top-center" })
+        setIsSubscibing(false)
+      } else {
+        const { error } = await res.json()
+        toast.error(`${error}`, { position: "top-center" })
 }
-
+}catch{
+      toast.error("Network error. Please try again.", { position: "top-center" })
+    } finally {
+      setIsSubscibing(false)
+    }
+}else{
+    toast.error("please provide an email",{position:"top-center"})
+}
+}
   return (
     <ThemeProvider>
   
@@ -24,7 +49,8 @@ async function handleSubmit()=>{
                      placeholder="Email address" 
                      className="bg-transparent border-none rounded-l-lg px-3 py-2 text-sm w-full placeholder:text-white/60 focus:outline-none text-white font-semibold" 
                      value={email}
-                     onChange={(e) => setEmail(e.target.value)}
+                     disabled={issubscibing}
+                     onChange={(e)=>setEmail(e.target.value)}
                       required
                       />
                

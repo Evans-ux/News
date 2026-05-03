@@ -210,33 +210,33 @@ export default function BecomeAuthor() {
               </div>
             </div>
 
-             /*  {/* Profile Image */}
-                           <div className="space-y-1.5">
-                             <label className="text-sm font-semibold text-foreground inline-flex items-center gap-2">
-                               <ImageIcon className="w-4 h-4 text-red-500" />
-                               Profile Image
-                               <span className="text-muted-foreground font-normal text-xs">(upload or enter URL)</span>
-                             </label>
-                             <div className="flex gap-3">
-                               <input
-                                 type="url"
-                                 placeholder="https://example.com/image.jpg"
-                                 value={urlToImage}
-                                 onChange={(e) => setUrlToImage(e.target.value)}
-                                 className="flex-1 px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-red-500/40 focus:border-red-500 transition-all duration-200 text-sm"
-                               />
-                               <label className="cursor-pointer flex items-center justify-center px-4 py-3 bg-muted/50 hover:bg-muted text-foreground font-semibold rounded-xl border border-input transition-all w-auto whitespace-nowrap gap-2">
-                                 {isUploadingImage ? <Loader2 className="w-4 h-4 animate-spin" /> : <UploadCloud className="w-4 h-4" />}
-                                 <span className="hidden sm:inline">{isUploadingImage ? "Uploading..." : "Upload File"}</span>
-                                 <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={isUploadingImage} />
-                               </label>
-                             </div>
-                             {urlToImage && (
-                               <div className="mt-2 rounded-xl overflow-hidden border border-border bg-muted/30">
-                                 <img src={urlToImage} alt="Preview" className="w-full h-32 object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
-                               </div>
-                             )}
-                           </div> */
+            {/* Profile Image */}
+            <div className="space-y-1.5">
+              <label className="text-sm font-semibold text-foreground inline-flex items-center gap-2">
+                <ImageIcon className="w-4 h-4 text-red-500" />
+                Profile Image
+                <span className="text-muted-foreground font-normal text-xs">(upload or enter URL)</span>
+              </label>
+              <div className="flex gap-3">
+                <input
+                  type="url"
+                  placeholder="https://example.com/image.jpg"
+                  value={urlToImage}
+                  onChange={(e) => setUrlToImage(e.target.value)}
+                  className="flex-1 px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-red-500/40 focus:border-red-500 transition-all duration-200 text-sm"
+                />
+                <label className="cursor-pointer flex items-center justify-center px-4 py-3 bg-muted/50 hover:bg-muted text-foreground font-semibold rounded-xl border border-input transition-all w-auto whitespace-nowrap gap-2">
+                  {isUploadingImage ? <Loader2 className="w-4 h-4 animate-spin" /> : <UploadCloud className="w-4 h-4" />}
+                  <span className="hidden sm:inline">{isUploadingImage ? "Uploading..." : "Upload File"}</span>
+                  <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={isUploadingImage} />
+                </label>
+              </div>
+              {urlToImage && (
+                <div className="mt-2 rounded-xl overflow-hidden border border-border bg-muted/30">
+                  <img src={urlToImage} alt="Preview" className="w-full h-32 object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
+                </div>
+              )}
+            </div>
 
             {/* Info box */}
             <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
