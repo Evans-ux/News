@@ -3,11 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
  
 import { Toaster } from "sonner";
-import Navbar from "@/components/components/NewsNav";
+import Navbar from "@/components/NewsNav";
  
-import ThemeProvider from "@/components/components/ThemeProvider";
+import ThemeProvider from "@/components/ThemeProvider";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/components/app-sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 import { isAdmin as checkAdmin } from "@/lib/auth/admin";
 import { isUser as checkAuthor } from "./actions/getSession";
 

@@ -32,7 +32,7 @@ import {
 } from "lucide-react"
 
 import Link from "next/link"
-import { signOut } from "@/components/components/actions/Logout"
+import { signOut } from "@/components/actions/Logout"
  
 
 // Define navigation items for the sidebar

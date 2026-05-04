@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Load from "@/components/ui/_components/load";
-import Displaynews from "@/components/components/Displaynews";
-import TrendingSidebar from "@/components/components/TrendingSidebar";
+import Displaynews from "@/components/Displaynews";
+import TrendingSidebar from "@/components/TrendingSidebar";
 import Link from "next/link";
 
 type Props = {

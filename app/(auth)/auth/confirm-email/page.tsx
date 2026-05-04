@@ -7,7 +7,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Mail, ArrowLeft, Loader2, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { verifyOtpAction, resendOtpAction } from '@/components/components/actions/AuthActions';
+import { verifyOtpAction, resendOtpAction } from '@/components/actions/AuthActions';
 
 const OTPInput = ({ value, onChange, length = 8 }: { value: string, onChange: (val: string) => void, length?: number }) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);

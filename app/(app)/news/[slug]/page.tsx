@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import NewsDetailpage from "@/components/components/newsDetails";
+import NewsDetailpage from "@/components/newsDetails";
 
 interface Article {
   title: string;

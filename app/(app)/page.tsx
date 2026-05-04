@@ -2,10 +2,11 @@
 import Error from 'next/error';
 import React, { Suspense } from 'react';
 
-import Displaynews from '@/components/components/Displaynews';
+import Displaynews from '@/components/Displaynews';
 import Load from '@/components/ui/_components/load';
-import TrendingSidebar from '@/components/components/TrendingSidebar';
-import BreakingNews from '@/components/components/BreakingNews';
+import TrendingSidebar from '@/components/TrendingSidebar';
+import BreakingNews from '@/components/NewsSlide';
+import Subscribe from '@/components/Subscribe';
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -67,8 +68,10 @@ const fetchnews = async ({ searchParams }: Props) => {
         </section>
 
         <aside className="w-full lg:w-1/3 xl:w-1/4">
-          <div className="sticky top-24">
+          <div className="sticky top-24 space-y-8">
             <TrendingSidebar news={trendingData} />
+          
+            <Subscribe category = {"general"}/>
           </div>
         </aside>
       </div>

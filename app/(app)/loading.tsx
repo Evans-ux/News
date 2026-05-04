@@ -3,7 +3,7 @@ import { Suspense } from "react";
  ;
 import { ClipLoader } from "react-spinners";
 import { Loader } from "lucide-react";
-import Skeleton from "@/components/components/Skeleton";
+import Skeleton from "@/components/Skeleton";
 
 export default function Loading() {
   return (
