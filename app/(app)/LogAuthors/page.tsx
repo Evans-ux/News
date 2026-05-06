@@ -116,6 +116,7 @@ export default function BecomeAuthor() {
                 href="/createpost"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-all duration-200 text-sm shadow-lg shadow-red-600/20 hover:shadow-red-600/30"
               >
+              
                 <PenTool className="w-4 h-4" />
                 Write a Post
                 <ArrowRight className="w-4 h-4" />

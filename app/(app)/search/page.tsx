@@ -3,6 +3,7 @@ import Load from "@/components/ui/_components/load";
 import Displaynews from "@/components/Displaynews";
 import TrendingSidebar from "@/components/TrendingSidebar";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -62,7 +63,7 @@ export default async function SearchPage({
                 "{query}"
               </span>
             )}
-          </div>
+          </div>-
 
           {!query ? (
             <div className="text-center py-20 bg-gray-50 rounded-2xl border border-gray-100">
