@@ -3,6 +3,9 @@ import { getSessionforauthors } from "../../actions/getSession";
 import { redirect } from "next/navigation";
 import AuthorDashboardClient from "./AuthorDashboardClient";
 
+export const dynamic = "force-dynamic";
+
+
 export default async function AuthorDashboardPage() {
   const author = await getSessionforauthors();
 

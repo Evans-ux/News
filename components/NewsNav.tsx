@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
+import { useState, Suspense } from "react"
+
 import CountrySelect from "./CountrySelect"
 import Toggle from "./Darkmode"
 
@@ -59,7 +60,10 @@ export default function Navbar() {
 
           <div className="flex items-center space-x-4 ml-4">
             {/* Country Selector */}
-            <CountrySelect />
+            <Suspense fallback={<div className="w-20 h-8 bg-muted animate-pulse rounded-full" />}>
+              <CountrySelect />
+            </Suspense>
+
 
             {/* Search Bar */}
             <form onSubmit={handleSearch} className="flex items-center group overflow-hidden border border-border/80 rounded-full focus-within:ring-2 focus-within:ring-red-600/40 focus-within:border-red-600 transition-all duration-300 h-9">
