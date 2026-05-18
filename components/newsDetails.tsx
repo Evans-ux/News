@@ -36,18 +36,20 @@ export default function NewsDetailpage({ article }: NewsDetailProps) {
             })}
           </div>
         )}
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 leading-tight mb-6">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground leading-tight mb-6">
           {article.title}
         </h1>
-        <p className="text-lg sm:text-xl text-gray-600 font-medium leading-relaxed">
+        <p className="text-lg sm:text-xl text-muted-foreground font-medium leading-relaxed">
           {article.description}
         </p>
+
       </header>
 
       {/* Hero Image */}
       {imageUrl && (
-        <figure className="mb-12 rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-gray-50 aspect-video relative">
+        <figure className="mb-12 rounded-2xl overflow-hidden shadow-lg border border-border bg-muted/20 aspect-video relative">
           <img
+
             src={imageUrl}
             alt={article.title}
             className="w-full h-full object-cover"
@@ -56,20 +58,22 @@ export default function NewsDetailpage({ article }: NewsDetailProps) {
       )}
 
       {/* Article Content */}
-      <div className="max-w-2xl mx-auto prose prose-lg prose-red text-gray-800">
+      <div className="max-w-2xl mx-auto prose prose-lg prose-red dark:prose-invert text-foreground/90">
         <p className="whitespace-pre-line leading-loose text-lg font-serif">
           {article.content?.replace(/\[\+\d+ chars\]/g, '')}
         </p>
       </div>
 
+
       {/* Truncation Notice */}
       {article.content && article.content.includes('[+') && (
-        <div className="max-w-2xl mx-auto mt-12 bg-gray-50 border border-gray-100 rounded-xl p-6 sm:p-8 text-center shadow-sm">
-          <h3 className="text-lg font-bold text-gray-900 mb-2">Read the Full Story</h3>
-          <p className="text-gray-600 mb-6">
+        <div className="max-w-2xl mx-auto mt-12 bg-muted/30 border border-border rounded-xl p-6 sm:p-8 text-center shadow-sm">
+          <h3 className="text-lg font-bold text-foreground mb-2">Read the Full Story</h3>
+          <p className="text-muted-foreground mb-6">
             This article preview has been truncated by the news provider. To read the full, uninterrupted article, please visit the original source.
           </p>
           {article.url && (
+
             <a 
               href={article.url} 
               target="_blank" 
