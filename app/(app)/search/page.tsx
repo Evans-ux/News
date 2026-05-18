@@ -51,7 +51,8 @@ export default async function SearchPage({
   }
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-10">
+
       <div className="flex flex-col lg:flex-row gap-10">
         <section className="w-full lg:w-2/3 xl:w-3/4">
           <div className="flex items-center justify-between mb-6 pb-2 border-b border-gray-200">
@@ -98,6 +99,7 @@ export default async function SearchPage({
           </div>
         </aside>
       </div>
-    </main>
+    </div>
+
   );
 }

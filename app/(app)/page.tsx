@@ -41,7 +41,8 @@ const fetchnews = async ({ searchParams }: Props) => {
   const mainFeedData = alldata.slice(6);
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-10">
+
       
       {breakingData.length > 0 && (
         <section className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
@@ -76,7 +77,7 @@ const fetchnews = async ({ searchParams }: Props) => {
         </aside>
       </div>
 
-    </main>
+    </div>
   );
 };
 

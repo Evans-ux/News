@@ -4,6 +4,8 @@ import "../(app)/globals.css";
 
 import { Toaster } from "sonner";
 import ThemeProvider from "@/components/ThemeProvider";
+import Footer from "@/components/Footer";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +37,9 @@ export default function AuthLayout({
             <main className="flex-1 flex items-center justify-center">
               {children}
             </main>
+            <Footer />
           </div>
+
           <Toaster />
         </ThemeProvider>
       </body>

@@ -50,7 +50,8 @@ const CategoryPage = async ({ params, searchParams }: Props) => {
 
   return (
     <ThemeProvider>
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-10 ">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-10 ">
+
       
       <div className="flex flex-col lg:flex-row gap-10">
         <section className="w-full lg:w-2/3 xl:w-3/4">
@@ -81,7 +82,8 @@ const CategoryPage = async ({ params, searchParams }: Props) => {
         </aside>
       </div>
 
-    </main>
+    </div>
+
     </ThemeProvider>
   );
 };
