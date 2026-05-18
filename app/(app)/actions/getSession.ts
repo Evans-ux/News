@@ -27,7 +27,7 @@ export async function getSessionforauthors() {
     const supabase = await createClient();
     const { data: { user }, error } = await supabase.auth.getUser();
 
-    if (error || !user) return null;
+    if (error || !user) return false;
 
     const userWithRoles = await prisma.authors.findUnique({
       where: { user_Id: user.id }
@@ -36,6 +36,7 @@ export async function getSessionforauthors() {
     return userWithRoles;
   } catch (error) {
     console.error("Error getting session for authors:", error);
-    return null;
+    return false;
   }
-}
+}
+

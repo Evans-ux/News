@@ -32,25 +32,34 @@ export default async function Page({ params }: { params: Props }) {
     .join(' ')
     .trim();
 
-  // Fetch from GNews API using sanitized keywords
-  const res = await fetch(
-    `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&country=us&max=10&apikey=0791030da576c2ae30c502ad74cd0c39`,
-    { next: { revalidate: 3600 } }
-  );
+  let data;
+  try {
+    const res = await fetch(
+      `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&country=us&max=10&apikey=0791030da576c2ae30c502ad74cd0c39`,
+      { next: { revalidate: 3600 } }
+    );
 
-  if (!res.ok) {
-    console.error("Failed to fetch news details:", res.status, res.statusText);
+    if (!res.ok) {
+      console.error("Failed to fetch news details:", res.status, res.statusText);
+      return (
+        <div className="p-10 text-center">
+          <h2 className="text-xl font-bold text-red-600">Sync Error</h2>
+          <p>GNews API returned a {res.status} error.</p>
+          <p className="mt-2 text-sm text-gray-500 italic">Try searching for keywords instead.</p>
+        </div>
+      );
+    }
+    data = await res.json();
+  } catch (error) {
+    console.error("Network error fetching news details:", error);
     return (
       <div className="p-10 text-center">
-        <h2 className="text-xl font-bold text-red-600">Sync Error</h2>
-        <p>GNews API returned a {res.status} error.</p>
-        <p className="mt-2 text-sm text-gray-500 italic">Try searching for keywords instead.</p>
+        <h2 className="text-xl font-bold text-red-600">Network Error</h2>
+        <p>Could not connect to the news provider. Please check your connection.</p>
       </div>
     );
   }
 
-  const data = await res.json();
-  
   // Robust matching: find article with title similarity
   const normalize = (t: string) => t.toLowerCase().replace(/[^a-z0-9]/g, '');
   const searchTitleNorm = normalize(decodedTitle);
@@ -66,6 +75,7 @@ export default async function Page({ params }: { params: Props }) {
   if (!finalArticle && data.articles?.length > 0) {
     finalArticle = data.articles[0];
   }
+
 
   // If literally no articles found at all, return a polite "Not Found" UI instead of a hard 404 page
   if (!finalArticle) {
