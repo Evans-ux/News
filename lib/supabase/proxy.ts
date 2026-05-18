@@ -39,14 +39,13 @@ export async function updateSession(request: NextRequest) {
   // IMPORTANT: If you remove getClaims() and you use server-side rendering
   // with the Supabase client, your users may be randomly logged out.
   try {
-    const { data, error } = await supabase.auth.getClaims()
+    const { data: { user }, error } = await supabase.auth.getUser()
     if (error) {
-      console.error("Supabase getClaims error:", error)
+      // It's normal to have an error if there's no session
     }
-    const user = data?.claims
 
-    // Define public routes
-    const publicRoutes = ['/', '/auth', '/api', '/news', '/category', '/search', `/Weather`, ];
+    // Define public routes - ensure /auth is covered for callbacks/login
+    const publicRoutes = ['/', '/auth', '/api', '/news', '/category', '/search', '/Weather'];
     const isPublicRoute = publicRoutes.some(route => 
       request.nextUrl.pathname === route || request.nextUrl.pathname.startsWith(`${route}/`)
     );
@@ -66,9 +65,8 @@ export async function updateSession(request: NextRequest) {
     }
   } catch (error) {
     console.error("Middleware session update error:", error)
-    // On network error, allow the request to proceed as unauthenticated 
-    // rather than crashing the whole server.
   }
+
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
   return supabaseResponse
