@@ -1,15 +1,21 @@
 "use server"
 import { createClient } from "@/lib/supabase/server"
+import { headers } from "next/headers"
+
 
 const LoginWithGithubOAuth = async () => {
   const supabase = await createClient()
 
+  const headerList = await headers()
+  const origin = headerList.get("origin") || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/auth/callback`,
+      redirectTo: `${origin}/auth/callback`,
     },
   })
+
 
   if (error) {
     console.error(error)
